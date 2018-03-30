@@ -1,0 +1,78 @@
+{% extends 'core/base.html' %}
+{% block head %}
+  {% load static %}
+{% endblock %}
+{% block body %}
+  {% include 'core/navbar.html' %}
+  <div class="container-fluid">
+    <form method="POST">
+      {% csrf_token %}
+      <div class="col-md-4 offset-4 mt-5">
+      <div class="card text-center">
+        <div class="card-header bg-success text-white">
+          Cadastro
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              {% for field in form %}
+                <div class="form-group">
+                  <label>
+                    {% for error in field.errors %}
+                      {{ error }}
+                    {% endfor %}
+                    {{ field.label }}
+                  </label>
+                  {{ field }}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="submit" class="btn btn-success">
+                    Cadastrar
+                    <i class="far fa-paper-plane"></i>
+                  </button>
+                  <a href="{% url 'login' %}" class="btn btn-info">
+                    Logar
+                    <i class="fas fa-sign-in-alt"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </form>
+  </div>
+
+{% if password_error %}
+  <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Erro ao cadastrar usuário</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Campos de senha não conferem!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endif %}
+{% endblock %}
+{% block script %}
+  <script src="{% static 'js/modals.js' %}" type="text/javascript"></script>
+{% endblock %}

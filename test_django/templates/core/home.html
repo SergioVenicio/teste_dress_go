@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+{% block head %}
+  {% load static %}
+{% endblock %}
+{% block body %}
+  {% include 'core/navbar.html' %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="jumbotron bg-white">
+          <h4 class="display-5 text-center">
+              Dress & Go Aluguel Online de Vestidos de Grandes Estilistas
+              Vestidos que amamos!
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container-fluid content">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+          {% for produto in produtos %}
+            <div class="col-md-4 col-sm-6 produto_container">
+              <a href="{% url 'produto' produto.id %}" class="produto_link">
+                <figure class="figure">
+                  <img src="/{{static }}{{ produto.imagen }}" class="figure-img img-fluid rounded" alt="{{produto.nome}}">
+                  <figcaption class="figure-caption">
+                    <h5 class="text-center text-primary">{{produto.nome}}</h5>
+                    <p class="text-center">R$ {{produto.valor}}</p>
+                  </figcaption>
+                  <div class="row">
+                    <div class="col-md-12 text-center">
+                      <a href="{% url 'produto' produto.id %}" class="produto_comprar text-center btn btn-primary">Comprar</a>
+                    </div>
+                  </div>
+                </figure>
+              </a>
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

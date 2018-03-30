@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% block head %}
+  {% load static %}
+{% endblock %}
+{% block body %}
+  {% include 'core/navbar.html' %}
+  <div class="container-fluid">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Produto</th>
+          <th>Valor</th>
+          <th>Cep</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for aluguel in alugueis %}
+            <tr>
+              <th scope="col">{{ aluguel.cliente.email }}</th>
+              <th scope="col">{{ aluguel.produto.nome }}</th>
+              <th scope="col">{{ aluguel.valor }}</th>
+              <th scope="col">{{ aluguel.cep }}</th>
+              <th scope="col">
+                <a href="{% url 'edit_aluguel' aluguel.id %}" class="btn btn-info">
+                  <i class="far fa-edit"></i>
+                </a>
+              </th>
+            </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

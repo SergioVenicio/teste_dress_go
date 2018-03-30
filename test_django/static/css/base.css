@@ -1,0 +1,24 @@
+.content {
+  margin-bottom: 1em;
+}
+.produto {
+  border-top: thin solid #8f8f8f;
+  margin-bottom: 0.5em;
+}
+.produto_container {
+  float: left;
+}
+.produto_container:hover {
+  transition: all .5s;
+  border: thin solid #8F8F8F;
+}
+.produto_link {
+  text-decoration: none!important;
+}
+.produto_comprar:hover {
+  transition: all .5s;
+  background-color: #8F8F8F!important;
+}
+.nome_produto {
+  letter-spacing: 0.5px;
+}
